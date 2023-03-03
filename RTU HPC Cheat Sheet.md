@@ -148,6 +148,8 @@ echo "Node file: $PBS_NODEFILE :"
 echo Using ${NPROCS} processors across ${NNODES} nodes
 ~~~
 
+## Check if script was sent with Torque
+
 ## Collect log files
 
 Create sub folders in projects for script execution that compile all executed log files 
