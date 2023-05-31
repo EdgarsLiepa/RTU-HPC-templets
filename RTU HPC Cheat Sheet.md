@@ -1,6 +1,10 @@
 #HPC #Tools #Server 
 
+## Links 
+
 RTU HPC uses Torque/Moab resource manager. [Documentation](https://support.adaptivecomputing.com/hpc-cloud-support-portal-2/)
+
+[RTU HPC user manual](https://hpc-guide.rtu.lv/index.html)
 
 ## Usefull commands
 
@@ -105,11 +109,13 @@ qsub -l nodes=wn61:ppn=48 -q long
 qsub -q long -l nodes=1:ppn=48, feature=epyc7f72
 ```
 
-### Copy trhough GDN node to from hpc and sizif
+### Copy trhough GDN node to/from hpc and sizif
+
+[**Manual**](https://lftp.yar.ru/lftp-man.html)
 
 While copying from/to RTU HPC errors can happen and by using programs like *scp* erorrs can be missed.
 
-To copy trhough GDN node to/from BMC NAS lftp can be used:  
+To connect GDN node from BMC NAS lftp can be used:  
 
 ``` bash 
 # change user name to NAS user. same as sizif
@@ -122,6 +128,21 @@ set ssl:verify-certificate no
 
 where *username* is NAS username (same as ***sizif*** )
 
+### Copy
+
+mirror command copies files. Use `-I` to include matching files
+
+``` bash 
+# -I allows to use pattern matching
+mirror -I remote_path/*_25*.fq.gz
+```
+
+use -R with mirror to upload file to connected device.
+
+``` bash 
+# -R reverse mirror (put files)
+mirror -R local_path/local.file
+```
 
 ## .sh commands 
 
@@ -153,3 +174,12 @@ echo Using ${NPROCS} processors across ${NNODES} nodes
 ## Collect log files
 
 Create sub folders in projects for script execution that compile all executed log files 
+
+
+## Strings
+
+Use this to escape special characters for use together 4 example with *sed*
+~~~ shell
+ESCAPED_KEYWORD=$(printf '%s\n' "$TRIMMED" | sed -e 's/[]\/$*.^[]/\\&/g');
+~~~
+
