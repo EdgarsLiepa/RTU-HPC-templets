@@ -261,7 +261,9 @@ ESCAPED_KEYWORD=$(printf '%s\n' "$TRIMMED" | sed -e 's/[]\/$*.^[]/\\&/g');
 ## Rstudio
 
 https://www.rc.virginia.edu/userinfo/howtos/rivanna/launch-rserver/
+
 https://www.bioconductor.org/help/docker/
+
 https://rocker-project.org/use/singularity.html
 
 
